@@ -11,8 +11,9 @@
         <title>{{page_title}}</title>
       </head>
       <body>
+        {% include 'menu.html' %}
         <div class = "container">
-        <h1>{{title}}</h1>
+        <h3>{{title}}</h3>
         {% block content %}{% endblock %}
         </div>
         <!-- Optional JavaScript -->

@@ -9,7 +9,7 @@ blueprint = Blueprint('user', __name__, url_prefix='/users')
 @blueprint.route('/login')
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('market.index'))
 
     title = "Авторизация"
     login_form = LoginForm()

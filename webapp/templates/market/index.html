@@ -2,7 +2,7 @@
 
 {%block content%}
   <div class = "row">
-      <div class = 'col-8'>
+      <div class = 'col-12' >
         {% with messages = get_flashed_messages() %}
           {% if messages %}
           <div class="alert alert-warning" role="alert">
@@ -13,7 +13,7 @@
           {% endif %}
         {% endwith %} 
           <form class="d-flex">
-              <input class="form-control me-1" type="search" placeholder="D3 5000" aria-label="Search">
+              <input class="form-control me-1" type="search" placeholder="Например: D3 5000" aria-label="Search">
               <button class="btn btn-primary" type="submit">Поиск</button>
           </form>
       </div>
