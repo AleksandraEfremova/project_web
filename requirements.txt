@@ -8,6 +8,7 @@ colorama==0.4.6
 exceptiongroup==1.1.0
 flake8==6.0.0
 Flask==2.2.2
+flask-migrate==4.0.2
 Flask-SQLAlchemy==3.0.2
 Flask-WTF==1.0.1
 greenlet==2.0.1
