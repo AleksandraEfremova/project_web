@@ -21,9 +21,8 @@ def main():
     for product in goods:
         price = product.find_element(By.CLASS_NAME, '_2dGOi')         
         name = product.find_element(By.CLASS_NAME, '_2f75n._24Q6d.cia-cs') 
-        raiting = product.find_element(By.CLASS_NAME, '_2qvOO._19m_j._1Cjcb.cia-cs')
-        print(f'{price.text}\n {name.text}\n {raiting.text}')
-        #print(price.text)
+        rating = product.find_element(By.CLASS_NAME, '_2qvOO._19m_j._1Cjcb.cia-cs')
+        print(f'{price.text}\n {name.text}\n {rating.text}')
     driver.close()
 
 

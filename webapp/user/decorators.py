@@ -3,6 +3,7 @@ from functools import wraps
 from flask import current_app, flash, request, redirect, url_for
 from flask_login import config, current_user
 
+
 def user_required(func):
     @wraps(func)
     def decorated_view(*args, **kwargs):
@@ -16,4 +17,5 @@ def user_required(func):
             flash('Эта страница доступна только авторизованным пользователям')
             return redirect(url_for('market.index'))
         return func(*args, **kwargs)
+
     return decorated_view
