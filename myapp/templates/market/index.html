@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{%block content%}
+  <div class = "row">
+      <div class = 'col-12' >
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          <div class="alert alert-warning" role="alert">
+              {% for message in messages %}
+                  {{ message }}<br>
+              {% endfor %}
+          </div>
+          {% endif %}
+        {% endwith %} 
+          <form class="d-flex" role="search">
+              <input name="name" input class="form-control me-1" type="search" placeholder="Например: D3 5000" aria-label="Search">
+              <button class="btn btn-primary" type="submit">Поиск</button> 
+          </form>
+          <div class="row">
+            {% if request.args.get('name') %}
+              <h4>Результаты поиска по запросу: {{ request.args.get('name') }}</h4>
+            {% endif %}
+          
+            {% if request.args.get('name') %}
+            <div class="row">
+              {% for product in product_list %}
+                <div class="card">
+                  <img src="{{ product.image_path }}" class="card-img-top" alt="{{ product.name }} href={{product.url}}">
+                  <div class="card-body">
+            {% endif %}
+                </div>
+          </div>
+      </div>
+  </div>
+{%endblock%}
