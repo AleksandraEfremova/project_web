@@ -1,6 +1,5 @@
-
-from getpass import getpass
 import sys
+from getpass import getpass
 
 from webapp import create_app
 from webapp.db import db
@@ -19,7 +18,7 @@ with app.app_context():
     password2 = getpass('Повторите пароль: ')
     if not password == password2:
         sys.exit(0)
-    
+
     new_user = User(username=username, role='user')
     new_user.set_password(password)
 

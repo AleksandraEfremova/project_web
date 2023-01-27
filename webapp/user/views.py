@@ -1,12 +1,13 @@
-from flask import Blueprint, flash, render_template, redirect, url_for
-from flask_login import current_user,login_required, login_user, logout_user
+from flask import Blueprint, flash, redirect, render_template, url_for
+from flask_login import current_user, login_user, logout_user
 
 from webapp.db import db
+from webapp.user.decorators import user_required
 from webapp.user.forms import LoginForm, RegistrationForm
 from webapp.user.models import User
-from webapp.user.decorators import user_required
 
 blueprint = Blueprint('user', __name__, url_prefix='/users')
+
 
 @blueprint.route('/login')
 def login():
@@ -23,10 +24,10 @@ def process_login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-    if user and user.check_password(form.password.data):
-        login_user(user, remember=form.remember_me.data)
-        flash('Вы успешно авторизовались')
-        return redirect(url_for('market.index'))
+        if user and user.check_password(form.password.data):
+            login_user(user, remember=form.remember_me.data)
+            flash('Вы успешно авторизовались')
+            return redirect(url_for('market.index'))
 
     flash('Неправильное имя пользователя или пароль')
     return redirect(url_for('user.login'))
@@ -38,13 +39,14 @@ def logout():
     logout_user()
     return redirect(url_for('market.index'))
 
+
 @blueprint.route('/user')
 @user_required
 def user_index():
     page_title = 'Витамины и БАДы NOW. Избранное.'
     if current_user.is_user:
         return render_template('user/user.html', page_title=page_title)
-    
+
 
 @blueprint.route('/register')
 def register():
