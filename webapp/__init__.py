@@ -34,3 +34,6 @@ def create_app():
 
 def register_commands(app):
     app.cli.add_command(commands.save_products)
+
+def register_commands(app):
+    app.cli.add_command(commands.save_productswb)

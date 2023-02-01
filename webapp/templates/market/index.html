@@ -16,19 +16,29 @@
               <input name="name" input class="form-control me-1" type="search" placeholder="Например: D3 5000" aria-label="Search">
               <button class="btn btn-primary" type="submit">Поиск</button> 
           </form>
-          <div class="row">
+          <div class="col">
             {% if request.args.get('name') %}
-              <h4>Результаты поиска по запросу: {{ request.args.get('name') }}</h4>
+              <h5>Результаты поиска по запросу: {{ request.args.get('name') }}</h5>
             {% endif %}
           
             {% if request.args.get('name') %}
             <div class="row">
-              {% for product in product_list %}
-                <div class="card">
-                  <img src="{{ product.image_path }}" class="card-img-top" alt="{{ product.name }} href={{product.url}}">
-                  <div class="card-body">
-            {% endif %}
+              {% for vitamin in vitamins %}
+                <div class="col-3 mt-3">
+                  <div class="card" style="width: 18rem;">
+                    <img src="{{ vitamin.image }}" class="card-img-top" alt="{{vitamin.name}}" style="height: 300px;">
+                    <div class="card-body">
+                      <h5 class="card-title"> Цена: {{ vitamin.price }} ₽</h5>
+                      <p class="text-truncate">{{ vitamin.name }}</p>
+                      <a href= "{{ vitamin.url }}" class="btn btn-primary">Купить</a>
+                      <button type="button" class="btn btn-outline-info">В избранное💙</button>
+                    </div>
+                  </div>
                 </div>
+               {%endfor%}
+            </div>
+            {% endif %}
+            </div>
           </div>
       </div>
   </div>
