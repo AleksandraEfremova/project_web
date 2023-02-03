@@ -49,6 +49,7 @@ typing_extensions==4.4.0
 urllib3==1.26.13
 webdriver-manager==3.8.5
 Werkzeug==2.2.2
+win32-setctime==1.1.0
 wsproto==1.2.0
 WTForms==3.0.1
 zipp==3.11.0

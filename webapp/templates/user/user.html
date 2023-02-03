@@ -3,5 +3,19 @@
 {%block content%}
   <div class = "container">
   <h3>Избранное 💙</h3>
+  <div class="row">
+  {% for favorite in current_user.favorite %}
+  <div class="col-3 mt-3">
+    <div class="card" style="width: 18rem;">
+      <img src="{{ favorite.image}}" class="card-img-top" alt="{{favorite.name}}" style="height: 300px;">
+      <div class="card-body">
+        <h5 class="card-title"> Цена: {{ favorite.price }} ₽</h5>
+        <p class="text-truncate">{{ favorite.name }}</p>
+        <a href= "{{ favorite.url }}" class="btn btn-primary">Купить</a>
+        <button type="button" class="btn btn-outline-info">Удалить ❌</button>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
   </div>
 {%endblock%}

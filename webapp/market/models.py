@@ -1,7 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from webapp import config
 
-db = SQLAlchemy()
+from webapp.db import db
 
 
 class Vitamins(db.Model):

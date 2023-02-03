@@ -1,10 +1,11 @@
-from flask import Blueprint, flash, redirect, render_template, url_for
+from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_user, logout_user
 
 from webapp.db import db
 from webapp.user.decorators import user_required
 from webapp.user.forms import LoginForm, RegistrationForm
 from webapp.user.models import User
+from webapp.market.models import Vitamins
 
 blueprint = Blueprint('user', __name__, url_prefix='/users')
 
@@ -45,7 +46,7 @@ def logout():
 def user_index():
     page_title = 'Витамины и БАДы NOW. Избранное.'
     if current_user.is_user:
-        return render_template('user/user.html', page_title=page_title)
+        return render_template('user/user.html', page_title=page_title, current_user=current_user)
 
 
 @blueprint.route('/register')
@@ -72,3 +73,15 @@ def process_reg():
             for error in errors:
                 flash('Ошибка в поле "{}": - {}'.format(getattr(form, field).label.text, error))
         return redirect(url_for('user.register'))
+
+@blueprint.route('/like/<int:product_id>')
+def like(product_id):
+    product = db.get_or_404(Vitamins, product_id)
+    current_user.favorite.append(product)
+    db.session.add(current_user)
+    db.session.commit()
+    flash(f'{product.name} добавлено в избранное')
+    return redirect(url_for('market.index', **request.args))
+
+
+    

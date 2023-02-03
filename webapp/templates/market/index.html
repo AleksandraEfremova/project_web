@@ -31,7 +31,7 @@
                       <h5 class="card-title"> Цена: {{ vitamin.price }} ₽</h5>
                       <p class="text-truncate">{{ vitamin.name }}</p>
                       <a href= "{{ vitamin.url }}" class="btn btn-primary">Купить</a>
-                      <button type="button" class="btn btn-outline-info">В избранное💙</button>
+                      <a href="{{ url_for('user.like', product_id=vitamin.id, **dict(request.args)) }}"  class="btn btn-outline-info">В избранное💙</a>
                     </div>
                   </div>
                 </div>
